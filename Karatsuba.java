@@ -6,6 +6,10 @@ public class Karatsuba {
         }
             
         String res = karatsuba(args[0], args[1]);
+
+        if (res.startsWith("0")) 
+            res = removeInuteis(res);
+
         System.out.println(res);
     }
 
@@ -108,6 +112,16 @@ public class Karatsuba {
         }
 
         sb.append(s);
+        return sb.toString();
+    }
+
+    private static String removeInuteis(String s) {
+        StringBuilder sb = new StringBuilder(s);
+
+        while (sb.length() > 1 && sb.charAt(0) == '0') {
+            sb.deleteCharAt(0);
+        }
+
         return sb.toString();
     }
 }

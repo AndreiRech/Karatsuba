@@ -27,7 +27,7 @@ Após isso, você pode informar os números desejados, sendo que os mesmos devem
 O resultado esperado deve aparecer no terminal logo abaixo de seu input.
 
 ```bash
-    00000000000000000000001100010111010011000100101101111111100110000011001100001111111010101101001001001000111110101000010
+    1100010111010011000100101101111111100110000011001100001111111010101101001001001000111110101000010
 ```
 
 # O QUE FAZER
@@ -54,4 +54,4 @@ Aqui está a lista de a fazeres do trabalho.
 
 - [X] Shift de valores
 - [X] Igualar número de dígitos
-- [ ] Remover 0 adicionais em frente ao resultado final
+- [X] Remover 0 adicionais em frente ao resultado final
