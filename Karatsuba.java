@@ -7,7 +7,7 @@ public class Karatsuba {
             
         String res = karatsuba(args[0], args[1]);
 
-        if (res.startsWith("0")) 
+        if (res.startsWith("0") && res.length() > 1) 
             res = removeInuteis(res);
 
         System.out.println(res);
@@ -67,31 +67,37 @@ public class Karatsuba {
     }
 
     private static String subtrai(String a, String b) {
-        StringBuilder sb = new StringBuilder();
-        int borrow = 0;
-        int posicaoA = a.length() - 1;
-        int posicaoB = b.length() - 1;
+        if (a.length() != b.length()) {
+            int tamanhoMax = Math.max(a.length(), b.length());
+            a = iguala(tamanhoMax, a);
+            b = iguala(tamanhoMax, b);
+        }
+        
+        String complemento = complemento(b);
+        complemento = soma(complemento, "1");
 
-        while (posicaoA >= 0) {
-            int diff = (a.charAt(posicaoA--) - '0') - (posicaoB >= 0 ? b.charAt(posicaoB--) - '0' : 0) - borrow;
-            if (diff < 0) {
-                diff += 2;
-                borrow = 1;
-            } else {
-                borrow = 0;
-            }
-            sb.append(diff);
+        String resultado = soma(a, complemento);
+
+        if (resultado.length() > a.length()) {
+            resultado = resultado.substring(1);
         }
 
-        while (sb.length() > 1 && sb.charAt(sb.length() - 1) == '0') {
-            sb.setLength(sb.length() - 1);
-        }
-
-        return sb.reverse().toString();
+        return resultado;
     }
 
     private static String multiplica(String a, String b) {
        return (a.equals("1") && b.equals("1")) ? "1" : "0";
+    }
+
+    private static String complemento(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i=0; i<s.length(); i++) {
+            char x = (s.charAt(i) == '0') ? '1' : '0';
+            sb.append(x);
+        }
+
+        return sb.toString();
     }
 
     private static String shift(int qnt, String s) {
