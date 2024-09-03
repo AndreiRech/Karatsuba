@@ -55,3 +55,4 @@ Aqui está a lista de a fazeres do trabalho.
 - [X] Shift de valores
 - [X] Igualar número de dígitos
 - [X] Remover 0 adicionais em frente ao resultado final
+- [X] Complemento de um número
