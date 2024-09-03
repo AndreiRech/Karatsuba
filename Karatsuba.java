@@ -49,19 +49,31 @@ public class Karatsuba {
 
     private static String soma(String a, String b) {
         StringBuilder sb = new StringBuilder();
-        int carry = 0;
-        int posicaoA = a.length() - 1;
-        int posicaoB = b.length() - 1;
 
-        while (posicaoA >= 0 || posicaoB >= 0 || carry > 0) {
-            int soma = carry;
-
-            if (posicaoA >= 0) soma += a.charAt(posicaoA--) - '0';
-            if (posicaoB >= 0) soma += b.charAt(posicaoB--) - '0';
-
-            sb.append(soma % 2);
-            carry = soma / 2;
+        int tamanhoMax = Math.max(a.length(), b.length());
+        if (a.length() != b.length()) {
+            a = iguala(tamanhoMax, a);
+            b = iguala(tamanhoMax, b);
         }
+        
+        char carry = '0';
+        for(int i=tamanhoMax-1; i>=0; i--) {
+            char valorA = a.charAt(i);
+            char valorB = b.charAt(i);
+
+            if(valorA == '0' && valorB == '0') {
+                sb.append( (carry == '0') ? '0' : '1' );
+                carry = '0';
+            } else if (valorA == '1' && valorB == '1') {
+                sb.append( (carry == '0') ? '0' : '1' );
+                carry = '1';
+            } else {
+                sb.append( (carry == '0') ? '1' : '0');
+                carry = (carry == '0') ? '0' : '1'; 
+            }
+        }
+
+        if (carry == '1') sb.append(carry);
 
         return sb.reverse().toString();
     }
