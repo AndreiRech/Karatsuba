@@ -4,7 +4,12 @@ public class Karatsuba {
             System.out.println("Informe 2 números.");
             return;
         }
-            
+
+        for(int i=0; i<2; i++) {
+            if(args[i].startsWith("0") && args[i].length() > 1)
+                args[i] = removeInuteis(args[i]);
+        }
+
         String res = karatsuba(args[0], args[1]);
 
         if (res.startsWith("0") && res.length() > 1) 
@@ -13,7 +18,7 @@ public class Karatsuba {
         System.out.println(res);
     }
 
-    private static String karatsuba(String a, String b) {
+    public static String karatsuba(String a, String b) {
         if (a.length() == 1 && b.length() == 1)
             return multiplica(a, b);
 
